@@ -1,11 +1,11 @@
 import './App.css'
-import { RenderingTests } from './RenderingTests'
+import { RmgFronted } from './RmgFronted'
 
 function App() {
 
   return (
     <>
-      <RenderingTests />
+      <RmgFronted />
     </>
   )
 }

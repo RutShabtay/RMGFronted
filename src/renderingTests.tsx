@@ -1,4 +1,3 @@
-import { Input } from 'postcss';
 import { useState } from 'react';
 import { RMGButton } from './components/RMGButton';
 import { RMGHeader } from './components/RMGHeader';
@@ -13,7 +12,7 @@ export const RenderingTests = () => {
 
     return (
         <div className="p-6 space-y-4">
-            <RMGHeader title="Hello Header Rendering Tests 👏👏👏" size='medium' />
+            <RMGHeader title="Hello Header Rendering Tests 👏👏👏" size='medium' color='primary' />
             <RMGText text="Hello Text Rendering Tests 🎉🎉🎉" size='large' color='primary' weight='bold' />
             <RMGInput placeholder="Insert here your text---👇" onChange={(e) => setInputValue(e.target.value)} />
             <RMGButton title='Click Me' onClick={() => alert('YAY--- I Was Clicked!!!')} />
