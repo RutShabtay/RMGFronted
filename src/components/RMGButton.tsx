@@ -3,11 +3,12 @@ import React from 'react';
 interface RMGButtonProps {
     title: string;
     color?: 'default' | 'primary' | 'secondary';
-    onClick?: () => void;
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
     className?: string;
+    type?: 'button' | 'submit' | 'reset';
 }
 
-export const RMGButton: React.FC<RMGButtonProps> = ({ title, color = 'primary', onClick, className }) => {
+export const RMGButton: React.FC<RMGButtonProps> = ({ title, color = 'primary', onClick, className, type = 'button' }) => {
     return (
         <button
             onClick={onClick}
