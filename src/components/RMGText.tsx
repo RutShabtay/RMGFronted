@@ -31,7 +31,6 @@ export const RMGText: React.FC<RMGTextProps> = ({
         normal: "font-normal",
         bold: "font-bold",
         xbold: "font-xbold",
-
     };
 
     return (
