@@ -5,6 +5,7 @@ interface RMGInputProps {
     placeholder?: string;
     value?: string;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    className?: string;
 }
 
 export const RMGInput: React.FC<RMGInputProps> = ({
@@ -12,6 +13,7 @@ export const RMGInput: React.FC<RMGInputProps> = ({
     placeholder,
     value,
     onChange,
+    className,
 }) => {
     return (
         <input
@@ -19,7 +21,7 @@ export const RMGInput: React.FC<RMGInputProps> = ({
             placeholder={placeholder}
             value={value}
             onChange={onChange}
-            className="border border-sky-300 p-2 rounded"
+            className={className}
         />
     );
 };
