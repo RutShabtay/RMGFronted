@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { RMGHeader } from "./components/RMGHeader"
 import { RMGText } from "./components/RMGText"
 import { RMGButton } from "./components/RMGButton"
@@ -43,9 +43,7 @@ export const RmgFronted = () => {
         }
     };
 
-
     return (
-
         <div>
             <div className="flex flex-col items-center ml-100 gap-4 mt-40">
                 <RMGHeader title="Ai Mockup Generator" size="large" color='default'></RMGHeader>
@@ -63,7 +61,6 @@ export const RmgFronted = () => {
                     <div className="animate-spin h-16 w-16 rounded-full border-8 border-t-transparent border-blue-500"></div>
                 </div>
             }
-
 
             {showModel &&
                 <div className="fixed inset-0 flex items-center justify-center z-50" onClick={() => setShowModel(false)} style={{ backgroundColor: 'rgba(83, 80, 80, 0.9)' }}>
@@ -110,11 +107,9 @@ export const RmgFronted = () => {
                                 </div>
                             </>
                         )}
-
                     </div>
                 </div>
             }
-
         </div>)
 }
 

@@ -20,7 +20,6 @@ export const generateJSXFromConfig = (config: any, indent: number = 0): string =
 };
 
 
-
 export const downloadCode = (fileName: string, code: string): void => {
     const blob: Blob = new Blob([code], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(blob);

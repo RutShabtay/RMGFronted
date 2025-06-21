@@ -5,7 +5,7 @@ import { RMGInput } from './components/RMGInput';
 import { RMGText } from './components/RMGText';
 import { RMGImage } from './components/RMGImage';
 import './App.css';
-import imgg from './assets/imgg.jpg';
+import img from './assets/imgg.jpg';
 
 export const RenderingTests = () => {
     const [inputValue, setInputValue] = useState('')
@@ -16,7 +16,7 @@ export const RenderingTests = () => {
             <RMGText text="Hello Text Rendering Tests 🎉🎉🎉" size='large' color='primary' weight='bold' />
             <RMGInput placeholder="Insert here your text---👇" onChange={(e) => setInputValue(e.target.value)} />
             <RMGButton title='Click Me' onClick={() => alert('YAY--- I Was Clicked!!!')} />
-            <RMGImage src={imgg} alt="example picture" width={100} height={150} />
+            <RMGImage src={img} alt="example picture" width={100} height={150} />
         </div>
     );
 }

@@ -10,7 +10,7 @@ interface RMGButtonProps {
 
 export const RMGButton: React.FC<RMGButtonProps> = ({ title, color = 'primary', onClick, className, type = 'button' }) => {
     return (
-        <button
+        <button type={type}
             onClick={onClick}
             className={`text-white py-2 px-4 rounded hover:bg-opacity-90 focus:outline-none ${color === 'primary'
                 ? 'bg-sky-500'

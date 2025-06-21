@@ -5,7 +5,6 @@ import { RMGInput } from './RMGInput';
 import { RMGHeader } from './RMGHeader'
 import { RMGImage } from './RMGImage'
 
-
 interface ComponentConfig {
     component: string;
     props?: any;
@@ -15,7 +14,6 @@ interface ComponentConfig {
 interface ComponentFactoryProps {
     config: ComponentConfig;
 }
-
 
 export const ComponentFactory = ({ config }: ComponentFactoryProps) => {
     if (!config || typeof config !== 'object' || config === null) {
