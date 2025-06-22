@@ -1,54 +1,61 @@
-# React + TypeScript + Vite
+# ⚡ RMG Mockup Generator – Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the **client-side** of the RMG JSX Mockup Generator!  
+This is a powerful frontend application built with **React + Vite**, designed to generate ready-to-use React components (JSX) based on natural language prompts.
 
-Currently, two official plugins are available:
+---
+📦 The reusable components library published on NPM:  
+[`rmg-components-lib`](https://www.npmjs.com/package/rmg-components-lib)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+git clone https://github.com/your-username/RMG-Frontend.git
+cd RMG-Frontend
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
+## ✨ Features
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- 🔍 **Prompt-to-Component**: Type in a description like  
+  _"Create a login page with email, password and a submit button"_  
+  → get a fully functional code snippet instantly.
+  
+- 💻 **Live Preview**: Instantly visualize how the generated component will look and behave.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- ✅ **Copy to Clipboard**: Easily copy the JSX code with a single click.
+
+- 📥 **Download Code**: Export the generated component into a `.tsx` file.
+
+- 🎨 **Pre-Styled Components**: Based on reusable RMG UI components (`RMGButton`, `RMGInput`, `RMGText` and more), styled with TailwindCSS.
+
+- 🔗 **Built-in Integration** with the [`rmg-components-lib`](https://www.npmjs.com/package/rmg-components-lib) NPM package.
+
+---
+
+## 🚀 Technologies Used
+
+- ⚛️ **React 19** + **Vite**
+- ⚛️ **Tailwind CSS**
+- ⚛️ **Axios** for server communication
+- 📦 [**rmg-components-lib**](https://www.npmjs.com/package/rmg-components-lib) – internal shared components library
+
+---
+
+## 📚 Example
+
+🧠 **Prompt**:
+Generate a user profile card with profile picture, name and follow button.
+
+### ⚙️ Component Generated:
+```jsx
+<div className="flex flex-col items-center p-4">
+  <RMGImage src="path/to/profile_picture.png" alt="Profile Picture" />
+  <RMGText className="font-bold text-lg mt-2">John Doe</RMGText>
+  <RMGButton title="Follow" onClick={handleFollow} />
+</div>
+
