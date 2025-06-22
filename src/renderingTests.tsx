@@ -5,7 +5,7 @@ import { RMGInput } from './components/RMGInput';
 import { RMGText } from './components/RMGText';
 import { RMGImage } from './components/RMGImage';
 import './App.css';
-import img from './assets/imgg.jpg';
+import img from './assets/img.jpg';
 
 export const RenderingTests = () => {
     const [inputValue, setInputValue] = useState('')

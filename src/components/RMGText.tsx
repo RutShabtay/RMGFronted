@@ -1,11 +1,12 @@
 import React from "react";
 
 interface RMGTextProps {
-    text: string;
+    text?: string;
     size?: "small" | "medium" | "large";
     color?: "default" | "primary" | "secondary";
     weight?: "normal" | "bold";
     className?: string;
+    children?: React.ReactNode;
 }
 
 export const RMGText: React.FC<RMGTextProps> = ({
@@ -14,6 +15,7 @@ export const RMGText: React.FC<RMGTextProps> = ({
     color = "default",
     weight = "normal",
     className,
+    children
 }) => {
     const sizeClasses = {
         small: "text-sm",
@@ -22,7 +24,7 @@ export const RMGText: React.FC<RMGTextProps> = ({
     };
 
     const colorClasses = {
-        default: "text-navy-blue",
+        default: "text-gray-blue",
         primary: "text-blue-1600",
         secondary: "text-gray-600",
     };
@@ -34,10 +36,11 @@ export const RMGText: React.FC<RMGTextProps> = ({
     };
 
     return (
-        <p
-            className={`${sizeClasses[size]} ${colorClasses[color]} ${weightClasses[weight]} ${className}`}
-        >
-            {text}
+        <p className={`${sizeClasses[size]} ${colorClasses[color]} ${weightClasses[weight]} ${className}`}>
+            {text && <span className="inline-block">{text}</span>}
+            {children ? (
+                <div>{children}</div>
+            ) : ''}
         </p>
     );
 };

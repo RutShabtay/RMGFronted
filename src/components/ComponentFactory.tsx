@@ -27,9 +27,9 @@ export const ComponentFactory = ({ config }: ComponentFactoryProps) => {
     )) : null;
     switch (component) {
         case "RMGText":
-            return <RMGText {...props} />;
+            return <RMGText {...props} children={childElements} />;
         case "RMGButton":
-            return <RMGButton {...props} />;
+            return <RMGButton {...props} children={childElements} />;
         case "RMGHeader":
             return <RMGHeader {...props} children={childElements} />;
         case "RMGImage":

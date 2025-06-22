@@ -8,7 +8,9 @@ import { RMGInput } from "./components/RMGInput"
 import { ComponentFactory } from './components/ComponentFactory';
 import { downloadCode } from './components/Utils'
 import { generateJSXFromConfig } from './components/Utils'
-
+import { ClipboardCopy } from 'lucide-react';
+import { ComponentsViewMenu } from './components/ComponentsViewMenu';
+import { UsageInstructions } from './components/usageInstructions';
 
 export const RmgFronted = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -17,6 +19,8 @@ export const RmgFronted = () => {
     const [password, setPassword] = useState('');
     const [uiStructure, setUiStructure] = useState<any>(null);
     const [showModel, setShowModel] = useState(false);
+    const [showViewMenu, setShowViewMenu] = useState(false);
+    const [showUsageInstructions, setShowUsageInstructions] = useState(false);
     const [mode, setMode] = useState<'login' | 'showCode' | 'ui'>('login');
     const [uiCode, setUiCode] = useState('');
 
@@ -41,6 +45,7 @@ export const RmgFronted = () => {
         }
         catch (error) {
             alert(`Failed to generate mockup- ${error} 😣. Please try again later.`);
+            setIsLoading(false);
         }
     };
 
@@ -64,63 +69,82 @@ export const RmgFronted = () => {
             }
 
             {showModel &&
-                <div className="fixed inset-0 flex items-center justify-center z-50" onClick={() => setShowModel(false)} style={{ backgroundColor: 'rgba(83, 80, 80, 0.9)' }}>
+                <div
+                    className="fixed inset-0 z-50 overflow-auto flex items-center justify-center p-4"
+                    style={{ backgroundColor: 'rgba(83, 80, 80, 0.9)' }}
+                    onClick={() => setShowModel(false)}
+                >
+                    <div
+                        className="relative bg-white rounded-xl shadow-xl p-6 w-full max-w-[750px] max-h-[90vh] flex flex-col"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <div className="flex flex-wrap justify-between gap-3 mb-4">
+                            <RMGButton title='X' color='default' onClick={() => { setMode('login'); setShowModel(false); }} />
+                        </div>
 
-                    <RMGButton title='X' color='default' className="absolute top-60.5 left-142 bg-black-500 text-white px-3 py-1 rounded" onClick={() => { setMode('login'); setShowModel(false) }}></RMGButton>
+                        <div className="overflow-auto flex-1">
+                            {mode === 'login' && (
+                                <div className="space-y-4">
 
-                    <RMGButton title='Show React Code' color='primary' className="absolute top-60.5 left-242 text-white px-3 py-1 rounded" onClick={(e) => { e.stopPropagation(); setMode('showCode'); }}></RMGButton>
+                                    <RMGButton title='Show React Code' color='primary' onClick={(e) => { e.stopPropagation(); setMode('showCode'); }} />
 
-                    <RMGButton title='Download' className="absolute top-131 left-143 text-white px-3 py-1 rounded" onClick={(e) => { e.stopPropagation(); downloadCode(`Code_ ${new Date().getDate()}_${new Date().getDay()}_${new Date().getTime()})`, uiCode) }}></RMGButton>
+                                    <h2 className="text-xl font-bold">Wanna see the magic? → Login first</h2>
 
-                    <div>
-                        {mode === 'login' && (
-                            <>
-                                <div className="bg-white p-23 rounded-xl shadow-xl w-[650px] text-center space-y-4" onClick={(e) => e.stopPropagation()}>
-                                    <h2 className="text-xl font-bold">Login</h2>
-                                    <RMGInput placeholder="Email" value={email} type='email' className="border p-2 w-full rounded" onChange={(e) => setEmail(e.target.value)} ></RMGInput>
+                                    <RMGInput placeholder="Email" value={email} type='email' className="border p-2 w-full rounded" onChange={(e) => setEmail(e.target.value)} />
 
-                                    <RMGInput placeholder="Password" value={password} type='password' className="border p-2 w-full rounded" onChange={(e) => setPassword(e.target.value)} ></RMGInput>
+                                    <RMGInput placeholder="Password" value={password} type='password' className="border p-2 w-full rounded" onChange={(e) => setPassword(e.target.value)} />
 
-                                    <RMGButton title='Login' onClick={() => { uiStructure ? setMode('ui') : alert("Not ready Yet---") }} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"></RMGButton>
+                                    <RMGButton title='Login' onClick={() => { uiStructure ? setMode('ui') : alert("Not ready Yet---") }} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" />
                                 </div>
-                            </>
-                        )}
+                            )}
 
-                        {mode === 'ui' && (
-                            <>
+                            {mode === 'ui' && (
+
+                                <div className="space-y-4">
+                                    <RMGButton title='Show React Code' color='primary' onClick={(e) => { e.stopPropagation(); setMode('showCode'); }} />
+
+                                    {uiStructure ? <ComponentFactory config={uiStructure} /> : <p>Loading UI structure...</p>}
+                                </div>
+                            )}
+
+                            {mode === 'showCode' && (
                                 <div>
-                                    <div className="bg-white p-40 rounded-xl shadow-xl w-[700px] text-center space-y-4" onClick={(e) => e.stopPropagation()}>
-                                        {uiStructure ? (
-                                            < ComponentFactory config={uiStructure} />
-                                        ) : (
-                                            <p>Loading UI structure...</p>
-                                        )}
-                                    </div>
-                                </div>
-                            </>
-                        )}
+                                    <div className="justify-center flex gap-2 mb-4">
+                                        <RMGButton title='Download👇' onClick={(e) => {
+                                            e.stopPropagation();
+                                            downloadCode(`Code_${new Date().getDate()}_${new Date().getDay()}_${new Date().getTime()}`, uiCode);
+                                        }} />
 
-                        {mode === 'showCode' && (
-                            <>
-                                <div className="bg-white p-50 rounded-xl shadow-xl w-[700px] text-center " onClick={(e) => e.stopPropagation()}>
-                                    <pre className="text-left bg-red-100 p-5 absolute top-82.5 left-152 max-h-[250px] text-sm ">
+                                        <RMGButton title='Show Render Ui' color='primary' onClick={(e) => { e.stopPropagation(); setMode('ui'); }} />
+                                    </div>
+                                    <div className="flex justify-end">
+                                        <RMGButton
+                                            onClick={() => navigator.clipboard.writeText(uiCode)}
+                                            color='secondary'
+                                            icon={<ClipboardCopy className="w-5 h-5 text-gray-600" />}
+                                        />
+                                    </div>
+                                    <pre className="text-left bg-gray-100 p-4 rounded max-h-[400px] overflow-auto text-sm">
                                         <code>{uiCode}</code>
                                     </pre>
                                 </div>
-                            </>
-                        )}
+                            )}
+                        </div>
                     </div>
                 </div>
             }
-        </div >)
-}
 
+            {
+                <div className='mt-30 ml-100 flex justify-center'>
+                    <div className='justify-center flex gap-4 mb-4'>
+                        <h1 className='mt-2'>Do you want to see all the components?</h1>
+                        <RMGButton title='Show Components' color='default' onClick={() => setShowViewMenu(true)} className="transition duration-200 hover:scale-105" /></div>
+                </div>
+            }
+            <RMGButton title='Show Usage Instructions' color='secondary' className='ml-90 mt-10' onClick={() => setShowUsageInstructions(true)} />
 
-
-
-
-
-
-
-
-
+            {showViewMenu && <ComponentsViewMenu close={setShowViewMenu} />}
+            {showUsageInstructions && <UsageInstructions close={setShowUsageInstructions} />}
+        </div>
+    );
+};
